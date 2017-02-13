@@ -33,13 +33,13 @@ func main() {
 	for scanner.Scan() {
 		s := scanner.Text()
 		wg.Add(1)
-		go func(str string) {
+		go func() {
 			if err := dumpresponse(s); err != nil {
 				fmt.Println(err)
 				os.Exit(1)
 			}
 			wg.Done()
-		}(s)
+		}()
 	}
 	if err := scanner.Err(); err != nil {
 		fmt.Println(err)
